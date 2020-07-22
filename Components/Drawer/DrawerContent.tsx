@@ -1,100 +1,54 @@
 import React from "react";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
 import { View, StyleSheet, Image } from "react-native";
-import {
-  useTheme,
-  Title,
-  Caption,
-  Paragraph,
-  Drawer,
-  Text,
-  TouchableRipple,
-  Switch,
-} from "react-native-paper";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-export default function DrawerContent(props: any) {
+import { Drawer } from "react-native-paper";
+import CustomDrawerItem from "./CustomDrawerItem";
+const DrawerContent = (props: any) => {
+  const CustomNavigation = (page: string) => {
+    return props.navigation.navigate(page);
+  };
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
         <Drawer.Section style={styles.drawerSection}>
           <View style={styles.userInfoSection}>
-            <View style={{ flexDirection: "row"}}>
+            <View style={{ flexDirection: "row" }}>
               <Image
-                source={require( "../../assets/hello-mobiles.png" )}
-                style={{ width:300, height: 100 }}
+                source={require("../../assets/hello-mobiles.png")}
+                style={{ width: 300, height: 100 }}
               />
-            
             </View>
           </View>
-
-          <DrawerItem
-            // icon={({ color, size }) => (
-            //   <Icon
-            //     name="home-outline"
-            //     color={color}
-            //     size={size}
-            //   />
-            // )}
-            label="Home" style={styles.label}
-            onPress={() => {
-              props.navigation.navigate("DashBoard");
-            }}
+          <CustomDrawerItem
+            ItemLabel="Home"
+            ItemStyle={styles.label}
+            ItemEvent={() => CustomNavigation("dashboard")}
           />
-          <DrawerItem
-            // icon={({ color, size }) => (
-            //   <Icon
-            //     name="account-outline"
-            //     color={color}
-            //     size={size}
-            //   />
-            // )}
-            label="Add Accessories"
-            onPress={() => {
-              props.navigation.navigate("DashBoard");
-            }}
+          <CustomDrawerItem
+            ItemLabel="Add Accessories"
+            ItemStyle={styles.label}
+            ItemEvent={() => CustomNavigation("dashboard")}
           />
-          <DrawerItem
-            // icon={({ color, size }) => (
-            //   <Icon
-            //     name="bookmark-outline"
-            //     color={color}
-            //     size={size}
-            //   />
-            // )}
-            label="Add Items"
-            onPress={() => {
-              props.navigation.navigate("DashBoard");
-            }}
+          <CustomDrawerItem
+            ItemLabel="Add Items"
+            ItemStyle={styles.label}
+            ItemEvent={() => CustomNavigation("dashboard")}
           />
-          {/* <DrawerItem
-            // icon={({ color, size }) => (
-            //   <Icon
-            //     name="List Items"
-            //     color={color}
-            //     size={size}
-            //   />
-            // )}
-            label="Settings"
-            onPress={() => { props.navigation.navigate('DashBoard') }}
-          /> */}
-          <DrawerItem
-            // icon={({ color, size }) => (
-            //   <Icon
-            //     name="account-check-outline"
-            //     color={color}
-            //     size={size}
-            //   />
-            // )}
-            label="Report"
-            onPress={() => {
-              props.navigation.navigate("DashBoard");
-            }}
+          <CustomDrawerItem
+            ItemLabel="Products"
+            ItemStyle={styles.label}
+            ItemEvent={() => CustomNavigation("dashboard")}
+          />
+          <CustomDrawerItem
+            ItemLabel="Report"
+            ItemStyle={styles.label}
+            ItemEvent={() => CustomNavigation("dashboard")}
           />
         </Drawer.Section>
       </DrawerContentScrollView>
     </View>
   );
-}
+};
 
 //Styles for  DrawerItems
 const styles = StyleSheet.create({
@@ -141,8 +95,10 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
   },
-  label:{
+  label: {
     fontWeight: "bold",
-    fontFamily:"Roboto"
-  }
+    fontFamily: "Roboto",
+  },
 });
+
+export default DrawerContent;
